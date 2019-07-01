@@ -9,6 +9,6 @@ public class App {
         if (args.length > 0)
             System.out.println("Hello " + args[0] + "!");
         else
-            System.out.println("Usage: java HelloWorld name");
+            System.out.println("Usage: java com.revature.App name");
     }
 }
