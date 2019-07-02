@@ -43,32 +43,3 @@ The `java` and `javac` commands require the full directory path or class path to
 
 From here we can add packages and imports, expanding the application into a set of interacting objects. By default, the *javac* compiler implicitly imports several base packages from the standard library. the `-help` flag can display available options. For example, the following will compile using UTF-8 encoding while conforming to Java 1.8 features:
 >javac -encoding UTF-8 -source 8 -target 8 Example.java
-
-# Maven 
-Opinionated project management tool for build automation, dependency management, and other actions. Once installed, use with the `mvn` command. Allows for a project to be IDE agnostic. See the official Maven project for documentation: http://maven.apache.org/index.html as well as the mvn repository to find available libraries: https://mvnrepository.com/
-
-The minimum `pom.xml` example:
-```xml
-<project>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>YourDomainName</groupId>
-	<artifactId>YourProjectName</artifactId>
-	<version>0.1.0</version>
-</project>
-```
-
-## Example commands
-Create a new Maven project with the quickstart archetype. Change groupId and artifactId arguments as needed:
->mvn archetype:generate
-
-Or skip the setup and run the generator in one line:
->mvn archetype:generate -DgroupId=com.revature -DartifactId=my-first-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-
-Compile class files into target/classes
->mvn compile
-
-Package project into a jar file in target
->mvn package
-
-Remove target folder and compiled build
->mvn clean
