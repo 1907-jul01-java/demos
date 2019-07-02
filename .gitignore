@@ -1,2 +1,4 @@
-mvn-demo/.classpath
-mvn-demo/.project
+.classpath
+.project
+.settings
+target
