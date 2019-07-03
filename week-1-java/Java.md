@@ -182,3 +182,228 @@ public static void varArgDemo(String m, int... intArgs) {
     }
 }
 ```
+
+## Exception Handling
+When an something wrong occurs during execution, the current stack frame will throw an exception. If the exception is not handled, or thrown up the stack to be handled elsewhere, the program will crash. Good exception handling helps a program continue execution. Common issues which can throw exceptions involve stack or heap memory overflow, an array iterating out of bounds, or an interrupted stream or thread.
+
+### Hierarchy
+Exception and error objects extend Throwable and are either checked or unchecked.
+* Throwable (checked)
+    * Exception (checked)
+        * RuntimeException (unchecked)
+    * Error (unchecked)
+
+Checked exceptions
+Unchecked exceptions / Runtime exceptions
+Errors
+Runtime and unchecked exceptions refer to the same thing. We can often use them interchangeably. 
+
+Checked Exceptions are compile-time issues that must be handled or thrown before the compiler can build, such as `IOException`. Unchecked Exceptions occur at runtime, so the compiler cannot predict them and does not force they be handled. Most unchecked exceptions extend RuntimeException, such as `NullPointerException`. Errors are serious issues and should not be handled, such as `StackOverflowError`.
+
+### Throws
+The `throws` keyword re-throws an exception up the stack to the method that called the throwing method. If the exception is continually thrown and never handled, the compiler will be satisfied in the case of checked exceptions but any issues will still break the program.
+```java
+public void methodThatThrows() throws IOException {
+    // throw (singular) will throw a new exception every time.
+    throw new IOException();
+}
+
+public void methodThatCalls() {
+    methodThatThrows(); // IOException must now be handled here, or methodThatCalls() must use throws as well
+}
+```
+
+### Try-Catch
+The most basic form of exception handling is the try-catch:
+```java
+public void methodThatThrows() throws IOException {
+    try {
+        throw new IOException();
+    } catch (IOException exception) {
+        // Do something with the exception
+        logger.warn("IOException thrown");
+    }
+}
+```
+
+A try block must be followed by at least one catch (or finally) block, but there can be any number of catch blocks for specific (or broad) exceptions. Catch blocks must be ordered from most specific to least specific Exception objects else later catch blocks catching subclasses of exceptions caught in catch blocks above it will become unreachable code.
+
+Multiple exceptions can also be handled in one catch block:
+```java
+public void methodThatThrows() throws IOException {
+    try {
+        throw new IOException();
+    } catch (IOException ex1 | ServletException ex2) {
+        // Do something with the exception
+        logger.warn("IOException thrown");
+    }
+}
+```
+
+### Finally
+Try blocks can be followed by one finally block, and can either replace the mandatory single catch block or follow one or more catch blocks. They are always guaranteed to execute, even if no exceptions are thrown, and are useful for closing resources that may be left open in memory due to an interruption from a thrown exception.
+```java
+public void methodThatThrows() throws IOException {
+    try {
+        throw new IOException();
+    } finally {
+        System.out.println("Will always run");
+    }
+}
+```
+
+### Try-with-resources
+Declaring and defining a resource - any object that implements AutoCloseable - within a pair of parenthesis after the try keyword removes the necessity of a finally block to close that resource.
+```java
+public void methodThatThrows() throws IOException {
+    try (FileReader fr = new FileReader()) {
+        throw new IOException();
+    } catch (IOException exception) {
+        logger.warn("IOException thrown");
+    }
+}
+```
+
+## I/O
+### InputStream/OutputStream -> BufferedReader/BufferedWriter
+The JVM can connect to external datasources such as files or network ports. InputStream/OutputStream and its implementations stream this data as an array of bytes whereas Reader/Writer and its implementations wrap InputStream/OutputStream to stream data as a char array. BufferedReader/BufferedWriter wraps Reader/Writer to stream several characters at a time, minimizing the number of I/O operations needed.
+
+```java
+BufferedReader br = new BufferedReader(
+  new StringReader("Bufferedreader vs Console vs Scanner in Java"));
+BufferedReader br = new BufferedReader(
+  new FileReader("file.txt"));
+BufferedReader br = new BufferedReader(
+  new InputStreamReader(System.in));
+
+BufferedReader fbreader = new BufferedReader(new FileReader("input.txt"));
+BufferedReader isbreader = new BufferedReader(new InputStreamReader(System.in));
+BufferedReader niofbreader = Files.newBufferedReader(Paths.get("input.txt"));
+
+try (BufferedReader reader = new BufferedReader(new FileReader("input.txt"))) {
+	return readAllLines(reader);
+}
+
+public String readAllLines(BufferedReader reader) throws IOException {
+	StringBuilder content = new StringBuilder();
+	String line;
+	while ((line = reader.readLine()) != null) {
+		content.append(line);
+		content.append(System.ineSeparator());
+	}
+	return content.toString();
+}
+```
+
+### Scanner
+BufferedReader provides many convenient methods for parsing data. Scanner can achieve the same, but unlike BufferedReader it is not thread-safe. It can however parse primitive types and Strings with regular expressions. Scanner has a buffer as well but its size is fixed and smaller than BufferedReader by default. BufferedReader requires handling IOException while Scanner does not. Thus, Scanner is best used for parsing input into tokenized Strings.
+
+```java
+Scanner sc = new Scanner(new File("input.txt"));
+Scanner issc = new Scanner(new FileInputStream("input.txt"));
+Scanner csc = new Scanner(System.in);
+Scanner strsc = new Scanner("A B C D");
+```
+
+### Properties
+Load properties as key-value pairs from a file
+//app.properties
+```
+key=value
+```
+
+```java
+Properties props = new Properties();
+props.load(new FileInputStream("app.properties");
+String value = props.getProperty("key", "defaultValue");
+```
+
+## Generics
+When passing objects into methods and data structures, a developer can overload or extend for its specific type or cast the object up and down its inheritance heirarchy. In contrast a generic type improves code reuse and type safety, reducing code by allowing methods and data structures to accept any type without risking dynamic runtime exceptions. Generic type parameters act as placeholders in a method signature while diamond operators specify the type for the compiler to enforce at compile time:
+
+```java
+ArrayList<String> list = new ArrayList<>();
+
+public <T> String genericToString(T a) {   
+    return a.toString();
+}
+
+
+public <T, E> String genericToStrinCat(T a, E b) {   
+    return a.toString() + b.toString();
+}
+```
+
+The type parameters T and E will be replaced by the compiler through type erasure:
+```java
+String s1 = genericToString(1);
+String s2 = genericToString("Hello", 3.5);
+```
+
+## Collections Framework
+Java's collections framework implement common data structures for objects.
+
+- **List** is an ordered collection of elements. A user has the ability to place an element anywhere in the list. The elements are accessable by their index. Unlike **Set**, **List** typically allows for duplicate elements such that element1.equals(element2). In addition to duplicates, **List** allow for multiple null elements to be stored.  
+  
+- **Set** is a collection of non duplicate elements meaning there will never exist a situation where element1.equals(element2). In addition to this, it is implied that there can only exist one null element due to the no duplicates rule.  
+
+- **Queue** is a collection of elements who in essence cannot be iterated, instead the **Queue** follows the **FIFO** (First In First Out) rule. When an element is added to the **Queue** it is placed at the back and when an element is pulled it is pulled from the from the front (index :0).  
+  
+- **Deque** extends **Queue** but augments the ability to insert and remove elements at either end. The name is short for "Double Ended Queue" and is pronounced "Deck".  
+  
+- **Map** is an interface which stores data with a key. A map cannot contain duplicate keys; each key can map to at most one value. **Map** can be visualized like a dictionary where only one word is paired with one definition.  
+
+### Comparable vs Comparator
+Comparable is a functional interface used to define a 'natural ordering' between instances of a class, commonly used by sorted collections such as TreeSet.
+
+Comparator is another functional interface used in a dedicated utility class that can compare two different instances passed to it. It can be passed to a sort method, such as Collections.sort() or Arrays.sort(), or to sorted collections.
+
+For example, to automatically sort a TreeSet of type Person according to age. We can either make the object class comparable or pass the constructor a comparator.
+
+#### Comparable
+```java
+class Person implements Comparable<Person>{
+	int age;
+ 
+	Person(int age) {
+		this.age = age;
+	}
+ 
+	@Override
+	public int compareTo(Person o) {
+		return o.age - this.age;
+	}
+}
+ 
+public static void main(String[] args) {
+	TreeSet<Person> persons = new TreeSet<Person>();
+	persons.add(new Person(43));
+	persons.add(new Person(25));
+	persons.add(new Person(111));
+}
+```
+
+#### Comparator
+```java
+class Person {
+	int age;
+ 
+	Person(int age) {
+		this.age = age;
+	}
+}
+ 
+class PersonAgeComparator implements Comparator<Person> {
+	@Override
+	public int compare(Person a, Person b) {
+		return a.age - b.age;
+	}
+}
+ 
+public static void main(String[] args) {
+	TreeSet<Person> persons = new TreeSet<Person>(new PersonAgeComparator());
+	persons.add(new Person(43));
+	persons.add(new Person(25));
+	persons.add(new Person(111));
+}
+```
