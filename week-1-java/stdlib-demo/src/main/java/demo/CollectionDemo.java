@@ -16,28 +16,28 @@ public class CollectionDemo {
 		// PersonLastNameComparator());
 
 		// Using Anonymous Comparator Class
-		TreeSet<Person> persons = new TreeSet<>(new Comparator<Person>() {
+		TreeSet<Dude> persons = new TreeSet<>(new Comparator<Dude>() {
 			@Override
-			public int compare(Person o1, Person o2) {
+			public int compare(Dude o1, Dude o2) {
 				return o1.firstName.compareTo(o2.firstName);
 			}
 		});
 
 		// Using Lambda Comparator
 		persons = new TreeSet<>((o1, o2) -> o1.firstName.compareTo(o2.firstName));
-		persons.add(new Person("Bob", "Builder", 40));
-		persons.add(new Person("Bruce", "Wayne", 85));
+		persons.add(new Dude("Bob", "Builder", 40));
+		persons.add(new Dude("Bruce", "Wayne", 85));
 
 		System.out.println(persons);
 
-		for (Person p : persons) {
+		for (Dude p : persons) {
 			System.out.println(p);
 		}
 	}
 
 }
 
-class Person implements Comparable<Person> {
+class Person implements Comparable<Dude> {
 	public String firstName;
 	public String lastName;
 	public int age;
@@ -55,16 +55,16 @@ class Person implements Comparable<Person> {
 	}
 
 	@Override
-	public int compareTo(Person o) {
+	public int compareTo(Dude o) {
 		return o.age - this.age;
 	}
 
 }
 
-class PersonLastNameComparator implements Comparator<Person> {
+class PersonLastNameComparator implements Comparator<Dude> {
 
 	@Override
-	public int compare(Person o1, Person o2) {
+	public int compare(Dude o1, Dude o2) {
 		return o1.lastName.compareTo(o2.lastName);
 	}
 

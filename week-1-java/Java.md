@@ -407,3 +407,73 @@ public static void main(String[] args) {
 	persons.add(new Person(111));
 }
 ```
+
+
+## Reflection
+Reflection allows one to examine or modify runtime behavior of a program. Java's Reflection API mostly allows introspection of structure, while modifying is only allowed on access modifiers of methods and fields. Many frameworks such as JUnit, Application/Servlet Containers, and Spring use reflection to examine class fields, construct objects, and invoke methods at runtime.
+
+```java
+Class<?> c = Class.forName("classpath.and.classname");
+Object o = c.newInstance();
+Method m = c.getDeclaredMethod("aMethod", new Class<?>[0]);
+m.invoke(o);
+```
+
+## Threads
+A *thread* is a unit of program execution that runs independently from other threads. Java programs can consist of multiple threads of execution that behave as if they were running on independent CPUs.
+
+- `java.lang.Thread` is the Thread class representing a thread, which you can extend and then override its run() method. Afterwards, you call start().
+- `java.lang.Runnable` is a functional interface (meaning only one method) which you can implement and then override run(). Afterwards, you can pass the object to a Thread instance and run start().
+- The `synchronized` keyword is a modifier that can be used to write blocks of code, methods, or other resources to protect it in a multithreaded environment.
+- `wait()` and `notify()` or `notifyAll()` methods of `java.lang.Object` can be used to suspend or wake up threads.
+
+Besides the main thread, developers can instantiate their own when:
+
+1. A custom class extends the `Thread` class 
+2. A `Thread` is passed an implemented `Runnable` instance
+
+Override the `run()` method in both cases to define the program to be run concurrently in the new thread, then call the Thread instance's `start()` method.
+
+### Extend `Thread`
+```java
+public class CustomThread extends Thread {
+    @Override
+    public void run() {
+        // Do something
+    }
+
+    public static void main(String[] args) {
+        new CustomThread().start();
+    }
+}
+```
+
+### Implement `Runnable`
+```java
+public class CustomRunnable implements Runnable {
+    @Override
+    public void run() {
+        // Do something
+    }
+
+    public static void main(String[] args) {
+        new Thread(new CustomRunnable()).start();
+    }
+}
+```
+
+### Anonymous `Runnable` Class
+```java
+new Thread(new Runnable() {
+        public void run() {
+            // Do something
+        }
+    }).start();
+```
+
+### `Runnable` Lambda
+```java
+new Thread(
+    () -> { /* Do something */ };
+    ).start();
+```
