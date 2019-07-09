@@ -1,5 +1,5 @@
-# Week 1 Topics
-- Features
+# Week 1 Java Topics
+- Java Features
   - Platform Independence: Write Once, Run Anywhere
   - Object Oriented Programming: Polymorphism, Encapsulation, Inheritance, and Abstraction
   - Verbose, Clear Syntax
