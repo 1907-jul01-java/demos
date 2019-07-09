@@ -80,3 +80,8 @@ You should pin the shortcut to STS. All above tools can be installed at once for
 ### Maven
 * [Maven - Getting Started](http://maven.apache.org/guides/getting-started/index.html)
 * [Maven by Example](https://books.sonatype.com/mvnex-book/reference/index.html)
+
+### SQL
+* [Database Design Textbook](https://opentextbc.ca/dbdesign01/)
+* [SQLBolt Exercises](https://sqlbolt.com/)
+* [Postgres Exercises](https://pgexercises.com/)
