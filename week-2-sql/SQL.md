@@ -159,7 +159,7 @@ Combine rows from two tables based on some logical relationship between them (co
 1. UNION returns distinct rows present in either return set
 1. UNION ALL returns all rows in both sets (including duplicates)
 1. INTERSECT returns distinct rows present in both sets
-1. MINUS returns all rows present in first set but not in second
+1. EXCEPT returns all rows present in first set but not in second
 
 ## Functions
 **Sequences** Generate numeric sequence, mostl for creating/managing primary keys.

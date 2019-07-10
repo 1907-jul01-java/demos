@@ -1,15 +1,14 @@
-package com.revature.movies;
+package com.revature.entities;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.revature.Dao;
+import com.revature.models.Movie;
 
 /**
  * MovieDao
  */
-public class MovieDao implements Dao {
+public class MovieDao implements Dao<Movie> {
     Connection connection;
 
     @Override

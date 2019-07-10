@@ -1,4 +1,4 @@
-package com.revature.movies;
+package com.revature.models;
 
 public class Movie {
     private String title;
