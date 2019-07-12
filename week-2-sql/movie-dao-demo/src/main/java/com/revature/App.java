@@ -10,6 +10,7 @@ public class App {
         MovieDao movieDao = new MovieDao(connectionUtil.getConnection());
         movieDao.insert(new Movie("The Dark Knight", 2007));
         System.out.println(movieDao.getAll());
+        System.out.println("Kevin Bacon id:" + movieDao.getActorIdByName("Kevin Bacon"));
         connectionUtil.close();
     }
 }

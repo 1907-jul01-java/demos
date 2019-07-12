@@ -55,3 +55,6 @@ cs.setInt(1, aid);
 cs.setInt(2, yta);
 cs.execute();
 ```
+
+# Transaction Management
+The connection objecct will automatically commit every statement to the database, which may not be ideal for batch insertions. To open a transaction, call `connection.setAutocommit(false)` and end the transaction afterwards with `connection.commit()`, then set `connection.setAutocommit(true)` if needed. Use the `rollback()` method if exceptions are thrown during the transaction.

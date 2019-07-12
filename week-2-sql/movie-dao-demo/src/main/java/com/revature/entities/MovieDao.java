@@ -55,4 +55,19 @@ public class MovieDao implements Dao<Movie> {
     public MovieDao(Connection connection) {
         this.connection = connection;
     }
+
+    public int getActorIdByName(String name) {
+        int result = 0;
+        String sql = "{ ? = call get_actor_id(?) }";
+        try {
+            CallableStatement cStatement = this.connection.prepareCall(sql);
+            cStatement.registerOutParameter(1, Types.INTEGER);
+            cStatement.setString(2, name);
+            cStatement.execute();
+            result = cStatement.getInt(1);
+        } catch (SQLException e) {
+
+        }
+        return result;
+    }
 }

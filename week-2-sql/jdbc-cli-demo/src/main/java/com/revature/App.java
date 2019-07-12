@@ -10,13 +10,13 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        String url = "jdbc:postgresql://192.168.99.100:5432/postgres";
-        String user = "postgres";
-        String password = "postgres";
+        String url = "jdbc:postgresql://192.168.99.100:5432/moviedb";
+        String user = "moviedb";
+        String password = "p4ssw0rd";
         String query;
 
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            Scanner scanner = new Scanner(System.in);
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+                Scanner scanner = new Scanner(System.in);) {
 
             while (true) {
                 Statement statement = connection.createStatement();

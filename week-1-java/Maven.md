@@ -94,3 +94,13 @@ And then the following command will run the plugin:
 
 Alternatively, the configuration element block can be removed while still using the plugin, or its arguments overwritten, with the following command:
 >mvn exec:java -Dexec.mainClass="com.revature.App" -Dexec.args="Mike"
+
+Even better, simply add this one properties tag:
+```xml
+<properties>
+	...
+	<exec.mainClass>your.main.App</exec.mainClass>
+</properties>
+```
+
+And the `mvn exec:java` command will run your program without any further plugin configuration.
