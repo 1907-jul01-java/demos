@@ -1,0 +1,64 @@
+# Week 3 Http Topics
+- HTTP
+    - Request vs Response
+    - Verbs:
+        - Get vs Post
+    - URI
+    - Body
+
+- Servlet
+    - Lifecycle
+    - Container
+    - Servlet API
+        - Servlet Interface, GenericServlet, HttpServlet
+        - init(), service(), destroy()
+        - doGet(), doPost()
+        - HttpServletRequest, HttpServletResponse
+        - RequestDispatcher
+        - Forward vs Redirect
+    - Deployment Descriptor:
+        - web.xml
+        - @WebServlet
+        - ServletContext vs ServletConfig
+        - Url mapping
+        - Load on startup
+    - Design Pattern: Front Controller
+
+- HTML
+    - HTML5
+    - Forms:
+        - Action
+        - Inputs
+        - Submit
+    - Elements:
+        - Attributes
+        - Id
+        - Class
+    - Head tags: meta, title, link
+    - Body tags: div, a, p, h1-h6
+    - Style & Script tags
+    - DOM - Document Object Model
+
+- CSS
+    - CSS3
+    - Cascade priority
+    - Bootstrap
+
+- JavaScript
+    - EcmaScript 6
+    - Variables: 
+        - Scopes
+        - var, let, const
+        - hoisting
+    - Objects, arrays, functions
+    - JSON stringify & parse
+    - DOM API
+    - Prototypical Inheritance
+    - Callbacks & closures
+    - Events: 
+        - Bubbling vs Capturing
+        - Listeners
+    - Template literals
+    - Lambda arrow notation
+    - AJAX: Asynchronous JavaScript & XML
+    - Promises
