@@ -1,14 +1,6 @@
-# HTTP/HTML
-Hypertext Transfer Protocol & Hypertext Markup Language, the two main technologies for a web browser. HTML provides a structure for static content on web pages. HTML documents are organized by element tags, some with attributes. Browsers don't display the element tags, but instead parse them to render content.
-
-<html>
-    <body>
-        <p>Hello there!</p>
-        <a src="www.google.com">Google</a>
-    </body>
-</html>
-
-HTTP is all about sending and receiving documents. A document is abstracted from HTTP packet that has information like metadata, contents, status codes.
+# Client-Server communication
+## HTTP
+Hypertext Transport Protocol, or HTTP, is a common standard for delivering content across the internet, especially between users and servers. An HTTP request should include a url destination, an HTTP method, and content such as metadata and a payload carried by its headers and body. A response will then be sent back with a status code and its own headers and body.
 
 ## HTTP Status Codes
 - 100-199: INFO
@@ -19,11 +11,9 @@ HTTP is all about sending and receiving documents. A document is abstracted from
 
 ## HTTP Methods (Verbs)
  - GET: retrieves information, sends info in the URL itself, empty body
->localhost:8080/ExampleContext/example?name="bob"
-
- - POST: Send info as text or binary in a body
- - PUT
- - DELETE
+ - POST: delivers content in body, usually for creating new resources
+ - PUT: update content
+ - DELETE: delete content
  - PATCH
  - UPDATE
  - TRACE
@@ -170,3 +160,8 @@ public class MyServlet extends HttpServlet {
 	}
 }
 ```
+
+## ServletContext vs ServletConfig
+A servlet container like Tomcat creates a singleton instance for each servlet, each sharing a ServletContext where certain initialization parameters are shared. These can be set in the Deployment Descriptor with the `context-param` tag.
+
+Each servlet meanwhile has its own local instance for its own configuration, its ServletConfig, which can be given initialization parameters with the `init-param` tag.
