@@ -5,10 +5,12 @@
 <title>Servlet Demo</title>
 </head>
 <body>
-	<h1>Welcome</h1>
+	<h1 id="greeting" onclick="call()"></h1>
 	<form action="hello" method="post">
-		<label>Name: </label><input type="text" name="name"/>
+		<label>Moniker: </label><input type="text" name="name"/>
 		<input type="submit"/>
 	</form>
+	<div id="animes"></div>
+	<script src="./app.js"></script>
 </body>
 </html>
