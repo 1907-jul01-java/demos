@@ -41,8 +41,12 @@
 
 - CSS
     - CSS3
-    - Cascade priority
-    - Bootstrap
+    - Cascade priority:
+        - external
+        - internal
+        - in-line
+    - Box Model
+    - Id vs Class tag
 
 - JavaScript
     - EcmaScript 6

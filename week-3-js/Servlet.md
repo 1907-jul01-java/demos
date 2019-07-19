@@ -162,6 +162,37 @@ public class MyServlet extends HttpServlet {
 ```
 
 ## ServletContext vs ServletConfig
-A servlet container like Tomcat creates a singleton instance for each servlet, each sharing a ServletContext where certain initialization parameters are shared. These can be set in the Deployment Descriptor with the `context-param` tag.
+A servlet container like Tomcat creates a singleton instance for each servlet, each sharing a ServletContext where certain initialization parameters are shared. These can be set in the Deployment Descriptor with the `context-param` tag:
+```xml
+...
+<welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+</welcome-file-list>
+<context-param>
+    <param-name>key</param-name>
+    <param-value>value</param-value>
+</context-param>
+<servlet>
+    <servlet-name>myServlet</servlet-name>
+    <servlet-class>servlets.MyServlet</servlet-class>
+</servlet>
+...
+```
+The parameter can be accessed through a servlet's ServletContext delegate method:
+>getServletContext().getInitParameter("key");
 
-Each servlet meanwhile has its own local instance for its own configuration, its ServletConfig, which can be given initialization parameters with the `init-param` tag.
+Each servlet meanwhile has its own local instance for its own configuration, its ServletConfig, which can be given initialization parameters with the `init-param` tag:
+```xml
+...
+<servlet>
+    <servlet-name>myServlet</servlet-name>
+    <servlet-class>servlets.MyServlet</servlet-class>
+    <context-param>
+        <param-name>key</param-name>
+        <param-value>value</param-value>
+    </context-param>
+</servlet>
+...
+```
+This parameter can be accessed directly from the servlet:
+>getInitParameter("key");

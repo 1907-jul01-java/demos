@@ -48,3 +48,9 @@ let jsonObject = JSON.parse(jsonString);
 let jsonObject = {id:7, name:'Example Name'};
 let jsonString = JSON.stringify(jsonObject);
 ```
+
+## Variables and Scope
+Early versions of JavaScript had only one variable type, `var`, which is scoped to either a function or the global context. ES6 introduced `let`, which also has lexical scoping (i.e. block scope), and `const`, which cannot be reassigned.
+
+## Call Stack
+JavaScript applications run as a single-threaded process

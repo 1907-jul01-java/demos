@@ -37,3 +37,58 @@ HTML document -> parsed -> DOM -> CSSOM -> Render Tree -> Layout -> Paint -> Com
 
 CSS is a render blocking resource, holding up the Render Tree, while JavaScript is a parser blocking resource pausing at each `<script>` tag without an `async` attribute. The Render Tree is the combination of the DOM and CSSOM. The Layout is determined by the viewport, default 980px width if not set like below:
 `<meta name="viewport" content="width=device-width,initial-scale=1">`
+
+# CSS
+Cascading Stylesheets is a declarative language used by a browser to style a web page, overwriting rules for HTML elements in cascading layers of increasing selector specificity and source precedence. CSS rules will be inherited by child nodes of these elements.
+
+## Order of specificity (highest to lowest)
+1) Important tag
+2) `style` property
+3) id selector
+4) class selector
+5) element selector
+
+## Property
+Inline CSS can be added as an HTML element attribute, known as a property.
+```html
+<div style="border: 1px solid black; font-size: 18px; "> Text </div>
+```
+
+## Order of precedence
+Within a specificity level, which rules overwrite others is based on the last rule to be parsed, starting from the top of a style sheet or block to the bottom, and which sheet is loaded last.
+
+## Rule
+In a `<style>` block or external `.css` file, CSS is defined by a rule made up of a selector and key-value settings.
+```css
+div {
+  border : 1px solid black;
+  font-size : 18px;
+}
+```
+
+Selectors include:
+- Universal: *
+- Element: html, div, p
+- Class: .class-name
+- Id: #id-name
+- Attribute: [attribute-key]
+
+And can be grouped using `,`:
+```css
+div, li {
+  ...
+}
+```
+
+Or target child elements of a specific selector:
+```css
+.class-name > li {
+  ...
+}
+```
+
+Or descendants of a selector:
+```css
+li a {
+  ...
+}
