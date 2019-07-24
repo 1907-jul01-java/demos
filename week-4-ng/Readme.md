@@ -1,0 +1,58 @@
+# Week 4 Angular Topics
+- REST
+  - HTTP
+    - Headers
+    - GET, POST, PUT, DELETE
+    - Status
+    - Body
+  - Exposing resources
+  - RESTful constraints
+    - Uniform interface
+    - Client–server
+    - Stateless
+    - Cacheable
+    - Layered system
+    - Code on demand (optional)
+  - Jackson Databinding
+  - JAX-RS Annotations
+    - ApplicationPath
+    - Path
+    - Get, Post, Put, Delete
+    - PathParam/QueryParam
+    - Consumes/Produces
+
+- Node.js
+  - npm/yarn
+  - package.json
+  - Webpack:
+    - Bundling
+    - Webpack Server
+  
+- TypeScript:
+  - Transpiling
+  - Access modifiers
+    - public & private
+  - Variable types
+    - number, boolean, string, void
+  - Modules & Namespaces
+  - Decorators
+  - Classes, Interfaces, & Constructors
+
+- Angular
+  - Angular-CLI
+  - Directives:
+    - Components
+      - Templates
+    - Services
+    - Pipes
+  - Modules
+  - Data binding:
+    - Interpolation
+    - Property binding
+    - Two-Way data binding
+  - Routing
+  - Angular HTTP, RxJS Promises/Observables
+  - Design Patterns: 
+    - Publisher/Subscriber
+    - Modules
+    - Dependency Injection

@@ -1,5 +1,7 @@
 # JDBC API
-Java Database Connectivity (JDBC) is an API for connecting to a RDBMS such as Oracle, PostgreSQL, or MySQL. As a collection of interfaces it requires a driver from the database vendor on the classpath. Once added, a `java.sql.Connection` is used to send SQL queries with `java.sql.Statement`, `java.sql.PreparedStatement`, or `java.sql.CallableStatement` objects, and retrieve result sets in `java.sql.ResultSet` objects.
+Java Database Connectivity (JDBC) is an API for connecting to a RDBMS such as Oracle, PostgreSQL, or MySQL. As a collection of classes and interfaces it requires a driver from the database vendor on the classpath. Once added, a `java.sql.DriverManager` will register the driver and act as a factory for a `java.sql.Connection`, used to create and send SQL queries with `java.sql.Statement`, `java.sql.PreparedStatement`, or `java.sql.CallableStatement` objects, and retrieve result sets in `java.sql.ResultSet` objects.
+
+You can load a JDBC driver using `Class.forName()` or `DriverManager.registerDriver()`, or let DriverManager automatically detect the driver on the classpath.
 
 ```java
 // Loading the driver may not be necessary, but it's good to specify
