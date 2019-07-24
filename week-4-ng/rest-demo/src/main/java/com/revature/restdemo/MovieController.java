@@ -30,9 +30,15 @@ public class MovieController {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Movie> getAllMovies() {
+	public List<Movie> getAllMoviesJSON() {
 		return movieCache;
 	}
+//	
+//	@GET
+//	@Produces(MediaType.APPLICATION_XML)
+//	public List<Movie> getAllMoviesXML() {
+//		return movieCache;
+//	}
 
 	@GET
 	@Path("{id}")
@@ -40,6 +46,13 @@ public class MovieController {
 	public Movie getMovieById(@PathParam("id") int id) {
 		return movieCache.get(id-1);
 	}
+//
+//	@GET
+//	@Path("{id}")
+//	@Produces(MediaType.APPLICATION_XML)
+//	public Movie getMovieByIdXML(@PathParam("id") int id) {
+//		return movieCache.get(id-1);
+//	}
 	
 	@GET
 	@Path("search")
@@ -60,40 +73,3 @@ public class MovieController {
 	}
 }
 
-class Movie {
-	private int id;
-	private String title;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Movie(int id, String title) {
-		super();
-		this.id = id;
-		this.title = title;
-	}
-
-	public Movie() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "Movie [id=" + id + ", title=" + title + "]";
-	}
-
-}

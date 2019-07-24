@@ -13,7 +13,7 @@
     - Cacheable
     - Layered system
     - Code on demand (optional)
-  - Jackson Databinding
+  - Jackson/JAXB Databinding (Marshalling/Unmarshalling)
   - JAX-RS Annotations
     - ApplicationPath
     - Path
@@ -24,7 +24,8 @@
 - Node.js
   - npm/yarn
   - package.json
-  - Webpack:
+
+- Webpack:
     - Bundling
     - Webpack Server
   
