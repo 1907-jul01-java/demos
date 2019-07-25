@@ -87,7 +87,12 @@ A `router-outlet` directive is where Angular will dynamically insert and remove 
 
 ## RxJS Observables
 The `HttpClientModule` provides access to `HttpClient`, an API for making HTTP calls. Create and inject an Angular Service into a component to fetch data from a web service and update a template.
-
+### Data class
+```ts
+export class Post {
+  title: string;
+}
+```
 ### Service
 ```ts
 @Injectable({
@@ -97,10 +102,8 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPosts(): Observable<any> {
-    return this.httpClient.get('http://jsonplaceholder.typicode.com/posts').pipe(
-      map(res => res)
-    );
+  getPosts(): Observable<Post[]> {
+    return this.httpClient.get('http://jsonplaceholder.typicode.com/posts');
   }
 }
 ```
@@ -108,13 +111,13 @@ export class HttpService {
 ### Component
 ```html
 <p *ngFor="let post of posts | async">
-    {{post.id}}. {{post.title}}
+    {{post.title}}
 </p>
 ```
 
 ```ts
 export class HttpComponent implements OnInit {
-  posts: Observable<any>;
+  posts: Observable<Post[]>;
 
   constructor(private httpService: HttpService) { }
 
