@@ -1,0 +1,5 @@
+<a routerLink="">Home</a>
+<p [ngStyle]="parentStyle">about works!</p>
+<button (click)="changeColor()">Change Color</button>
+<input [(ngModel)]="parentStyle.color">
+<app-child [childStyle]="parentStyle"></app-child>

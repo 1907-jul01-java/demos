@@ -1,0 +1,5 @@
+<a routerLink="">Home</a>
+<p>posts works!</p>
+<p *ngFor="let p of posts | async">
+    {{p.name}}
+</p>
