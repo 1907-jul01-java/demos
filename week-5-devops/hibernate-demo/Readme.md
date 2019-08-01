@@ -1,0 +1,81 @@
+# Week 5 DevOps/Hibernate Topics
+- Linux
+    - File system
+    - Distributions:
+        - Ubuntu, OpenSUSE, RedHat
+        - Amazonlinux
+    - GNU Core Utilities:
+        - cat, cd, cp, ls, mkdir, rm, mv, touch, chmod, pwd, nohup
+    - Other tools:
+        - grep, man, yum, less, crontab
+    - Bash
+        - terminal emulator vs shell
+        - scripting
+        - ssh
+
+- Amazon Web Services (AWS)
+    - On Premises vs Hybrid vs Cloud
+    - IaaS vs PaaS vs SaaS
+    - Identity and Access Management (IAM)
+    - Virtual Private Cloud (VPC)
+    - Elastic Cloud Compute (EC2)
+        - Security Groups
+        - Autoscaling Groups
+        - Load balancers
+        - Amazon Machine Image (AMI)
+        - Elastic Block Store (EBS)
+    - Simple Storage Service (S3)
+    - Relational Database Service (RDS)
+
+- DevOps
+    - Software Development Lifecycles:
+        - Iterative vs Waterfall vs Agile
+    - Agile/Scrum
+        - User stories, burndown charts
+        - iterations, retrospectives
+        - standup meetings
+    - Git SCM for teams:
+        - master, dev, feature branching
+        - code reviews & pull requests
+    - Pipelines
+        - Continuous Integration (CI):
+            - source -> SCM -> build server
+        - Continuous Delivery (CD)
+            - build server -> :
+                - QA/Test/UAT servers
+                - Quality gate (SonarQube)
+                - Code coverage
+                - Staging/Production server
+        - bash scripting
+        - Jenkins
+            - Setup, plugins, jobs, builds
+ 
+- Hibernate
+    - Object/Relational Mapping (ORM)
+    - Object States:
+        - Transient, Persistent, Detached
+    - Hibernate API Interfaces/Classes:
+        - Configuration:
+            - hibernate.cfg.xml
+                - Properties:
+                    - Driver, credentials
+                    - Dialect
+                    - hbm2ddl
+                - Mapping files/classes
+            - hbm.xml
+            - Java Persistance API annotations:
+                - @Entity, @Table, @Id, @Column
+                - @OneToOne, @OneToMany, @ManyToMany, @JoinColumn
+        - SessionFactory
+            - Level 2 cacheing
+        - Session
+            - Level 1 (default) cacheing
+            - save/persist
+            - get/load
+            - Transaction
+            - Query
+                - HQL, Native SQL, named queries
+            - Criteria
+                - Criterion:
+                    - Restrictions
+                    - OrderBy

@@ -220,3 +220,5 @@ typings/
 .dynamodb/
 
 # End of https://www.gitignore.io/api/node
+week-5-devops/hibernate-demo/.vscode/launch.json
+week-5-devops/hibernate-demo/.vscode/settings.json
