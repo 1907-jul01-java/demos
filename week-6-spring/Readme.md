@@ -1,0 +1,30 @@
+# Week 6 Spring Topics
+- Spring Framework
+    - Boot
+    - Core
+        - Bean lifecycle
+        - Injecting primitives (XML)
+        - Bean Factory vs. App Context
+        - Injecting objects (XML)
+        - Annotations
+        - @Component, @Repository, @Service, @Autowired
+    - AOP
+        - Aspect Oriented Programming (AOP)
+        - Cross-cutting concerns
+        - Advice
+        - Pointcut
+        - Join points
+        - Aspect-J
+    - MVC
+        - Control flow
+        - @Controller
+        - @RequestMapping
+        - InternalViewResourceResolver
+    - Integration
+        - RestTemplate
+    - Data/JPA
+        - Form input
+        - Validation (JSR 303)
+        - Hibernate Integration using Contextual Sessions
+        - @Transactional
+        
