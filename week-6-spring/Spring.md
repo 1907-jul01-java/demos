@@ -37,6 +37,7 @@ We can let Spring's IoC Container handle the factory logic for us instead.
 
 # Spring Framework
 Documentation: https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html
+
 Spring Framework is a highly modular Application Framework built upon an IoC Container. It offers similar features to JavaEE's EJBs and can interface well with many other specifications such as JPA. Spring can be configured and deployed without the need for an application server with only a few modules, or it can become a self-executing server in the form of a Spring Boot project.
 
 ## Inversion of Control (IoC) Container
@@ -63,16 +64,17 @@ Application Context is an extension of the Bean Factory, eagerly instantiating b
 
 ## Bean Lifecycle
 Source: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html
+
 Spring's container handles the lifecycle of a bean through a complex series of steps. In general, the setup phase involves instantiation of the empty object, handling of its dependencies, initialization of properties and default values, and any custom initialization methods before the bean is ready for use within the program. The teardown phase dereferences the bean when it passes out of scope (or the container is itself shutdown), but also calls any custom destroy methods along the way.
 
 Simplified Lifecycle:
-	▪ Instantiate Bean
-	▪ Populate Bean (Inject Dependencies)
-	▪ Set awareness of context values
-	▪ BeanPostProcessor
-	▪ (Optional) Custom Init method
-	▪ Bean is ready for use! (Bean Mitzvah)
-	▪ destroy()/custom destroy method (when container is shut down)
+- Instantiate Bean
+- Populate Bean (Inject Dependencies)
+- Set awareness of context values
+- BeanPostProcessor
+- (Optional) Custom Init method
+- Bean is ready for use! (Bean Mitzvah)
+- destroy()/custom destroy method (when container is shut down)
         
 As a rule, we do not need to interfere with the lifecycle, but Spring provides several callback methods to customize it in subtle ways. We can implement the InitializingBean/DisposableBean interfaces and override their afterPropertiesSet/destroy methods, or we can define our own custom init and destroy methods in XML configuration or through @PostConstruct/@PreDestroy annotations.
 
