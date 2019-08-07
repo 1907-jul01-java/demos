@@ -2,28 +2,34 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	<bean id="localDatasource" class="spring.beans.Datasource">
 		<property name="url" value="localhost:5432/moviedb"></property>
 		<property name="user" value="moviedb"></property>
 		<property name="password" value="password"></property>
 	</bean>
-	<bean id="awsDatasource" class="spring.beans.Datasource">
-		<property name="url" value="aws-domain-url.com:5432/moviedb"></property>
-		<property name="user" value="moviedb"></property>
-		<property name="password" value="password"></property>
-	</bean>
-	<bean name="localRepo localRepository" class="spring.beans.Repository">
+	<bean name="localRepo localRepository"
+		class="spring.beans.Repository">
 		<property name="datasource" ref="localDatasource"></property>
 	</bean>
-	<bean name="awsRepo" class="spring.beans.Repository">
-		<property name="datasource" ref="awsDatasource"></property>
-	</bean>
 	<bean id="localService" class="spring.beans.Service">
-		<constructor-arg name="repository" ref="localRepository"></constructor-arg>
+		<constructor-arg name="repository"
+			ref="localRepository"></constructor-arg>
 	</bean>
-	<bean id="awsService" class="spring.beans.Service">
-		<constructor-arg name="repository" ref="awsRepo"></constructor-arg>
+	<bean id="localController" class="spring.beans.Controller">
+		<property name="service" ref="localService"></property>
 	</bean>
+	<bean id="sysoutAspects" class="spring.aspects.SysoutAspect"></bean>
+	<aop:config>
+		<aop:aspect id="logAspects" ref="sysoutAspects">
+			<aop:pointcut
+				expression="execution(* spring.beans.Controller.*(..))"
+				id="aPointcut" />
+			<aop:before method="log" pointcut-ref="aPointcut" />
+			<aop:after-returning method="goodbye" pointcut-ref="aPointcut"/>
+		</aop:aspect>
+	</aop:config>
 </beans>

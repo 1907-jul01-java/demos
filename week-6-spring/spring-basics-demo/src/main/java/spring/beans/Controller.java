@@ -1,5 +1,7 @@
 package spring.beans;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 @org.springframework.stereotype.Controller
@@ -17,7 +19,7 @@ public class Controller {
 
 	@Override
 	public String toString() {
-		return "Controller [service=" + service + "]";
+		return "Controller [service=" + getService() + "]";
 	}
 
 	public Controller(Service service) {
@@ -27,6 +29,10 @@ public class Controller {
 
 	public Controller() {
 		super();
+	}
+	
+	public void error() throws IOException {
+		throw new IOException();
 	}
 
 }
