@@ -33,7 +33,6 @@ public class Movie {
 
 	public Movie() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

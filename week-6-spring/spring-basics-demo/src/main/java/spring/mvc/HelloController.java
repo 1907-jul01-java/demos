@@ -1,6 +1,5 @@
 package spring.mvc;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +21,7 @@ public class HelloController {
 	
 	@GetMapping("/hello/{name}")
 	public ResponseEntity<String> helloName(@PathVariable(name = "name") String name) {
-		return new ResponseEntity<String>(HttpStatus.I_AM_A_TEAPOT).ok("hello, " + name);
+		return ResponseEntity.ok("hello, " + name);
 	}
 	
 	@RequestMapping(path="/", method=RequestMethod.GET)
