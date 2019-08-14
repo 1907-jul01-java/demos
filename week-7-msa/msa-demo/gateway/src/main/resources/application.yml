@@ -1,0 +1,10 @@
+zuul:
+  routes:
+    directHello:
+      path: /direct/**
+      url: http://localhost:8181/hello
+    serviceNameHello:
+      path: /withEureka/**
+      service-id: HELLOMICROSERVICE
+eureka:  client:
+    register-with-eureka: false    service-url:      defaultZone: http://localhost:8761/eureka
